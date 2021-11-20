@@ -365,7 +365,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Column(
                           children: <Widget>[
                             Container(
-                                padding: const EdgeInsets.all(12),
+                                padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   color: Colors.brown[100],
