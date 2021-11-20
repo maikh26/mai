@@ -12,6 +12,7 @@ class BackgroundImage extends StatelessWidget {
         colors: [Colors.black, Colors.black12],
         begin: Alignment.bottomCenter,
         end: Alignment.center,
+        
       ).createShader(bounds),
       blendMode: BlendMode.darken,
       child: Container(
