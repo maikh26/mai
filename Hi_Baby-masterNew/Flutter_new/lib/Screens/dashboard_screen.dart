@@ -19,7 +19,7 @@ import '../age.dart';
 class DashboardScreen extends StatefulWidget {
   final String birthdat;
   final String babyname;
-    final String username;
+  final String username;
 
   const DashboardScreen({Key key, this.birthdat, this.babyname, this.username})
       : super(key: key);
@@ -110,8 +110,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                 
-                  
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -174,7 +172,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => homeschdule(username:username),
+                                        builder: (context) =>
+                                            homeschdule(username: username),
                                       ),
                                     );
                                   },
@@ -282,7 +281,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => vaccine(vaccin:vaccin),
+                                        builder: (context) =>
+                                            vaccine(vaccin: vaccin),
                                       ),
                                     );
                                   },
