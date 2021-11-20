@@ -368,7 +368,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color: Colors.brown[100],
+                                  color: Colors.brown[110],
                                 ),
                                 child: InkWell(
                                   onTap: () {
