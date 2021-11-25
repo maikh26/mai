@@ -66,7 +66,19 @@ class _addTaskpageState extends State<addTaskpage> {
                 },
               ),
             ),
-            Row(
+            Myinputfeild(
+                title: "Time ",
+                hint: _startTime,
+                widget: IconButton(
+                    onPressed: () {
+                      _getTimefromUser(isStarttime: true);
+                    },
+                    icon: Icon(
+                      Icons.access_time_rounded,
+                      color: Colors.grey,
+                    ))),
+
+            /*Row(
               children: [
                 Expanded(
                     child: Myinputfeild(
@@ -81,49 +93,12 @@ class _addTaskpageState extends State<addTaskpage> {
                               color: Colors.grey,
                             )))),
                 SizedBox(
-                  width: 12,
+                  width: 18,
                 ),
-                Expanded(
-                    child: Myinputfeild(
-                        title: "End Date",
-                        hint: _endTime,
-                        widget: IconButton(
-                            onPressed: () {
-                              _getTimefromUser(isStarttime: false);
-                            },
-                            icon: Icon(
-                              Icons.access_time_rounded,
-                              color: Colors.grey,
-                            )))),
+               
               ],
-            ),
-            Myinputfeild(
-              title: "Remind",
-              hint: "$_selectedRemind minutes early",
-              widget: DropdownButton(
-                icon: Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Colors.grey,
-                ),
-                iconSize: 32,
-                elevation: 4,
-                style: subtitlestyle,
-                underline: Container(
-                  height: 0,
-                ),
-                onChanged: (String newValue) {
-                  setState(() {
-                    _selectedRemind = int.parse(newValue);
-                  });
-                },
-                items: remindList.map<DropdownMenuItem<String>>((int value) {
-                  return DropdownMenuItem<String>(
-                    value: value.toString(),
-                    child: Text(value.toString()),
-                  );
-                }).toList(),
-              ),
-            ),
+            ),*/
+
             Myinputfeild(
               title: "Repeat",
               hint: "$_selectedRepeat ",

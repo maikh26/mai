@@ -19,8 +19,9 @@ import '../age.dart';
 class DashboardScreen extends StatefulWidget {
   final String birthdat;
   final String babyname;
+  final String username;
 
-  const DashboardScreen({Key key, this.birthdat, this.babyname})
+  const DashboardScreen({Key key, this.birthdat, this.babyname, this.username})
       : super(key: key);
 
   @override
@@ -37,6 +38,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     String birthdat = widget.birthdat;
     String babyname = widget.babyname;
+    String username = widget.username;
 
     var dt = DateFormat.yMd().parse(birthdat);
     String vaccin =
@@ -170,7 +172,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => homeschdule(),
+                                        builder: (context) =>
+                                            homeschdule(username: username),
                                       ),
                                     );
                                   },
@@ -365,17 +368,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Column(
                           children: <Widget>[
                             Container(
-                                padding: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(12),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color: Colors.brown[110],
+                                  color: Colors.brown[100],
                                 ),
                                 child: InkWell(
                                   onTap: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => gallery(),
+                                        builder: (context) =>
+                                            gallery(username_gallary: username),
                                       ),
                                     );
                                   },
@@ -389,7 +393,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               height: 4,
                             ),
                             Text(
-                              Strings.gallery,
+                              Strings.memory,
                               style: TextStyles.body2TextStyle,
                             ),
                           ],

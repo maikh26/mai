@@ -122,20 +122,24 @@ class _LOgin2State extends State<LOgin2> {
       if (responsebody['status'] == "success") {
         print("done");
         savePref(
-            responsebody['username'],
-            responsebody['email'],
-            responsebody['id'],
-            responsebody['birthdat'],
-            responsebody['baby_name']);
+          responsebody['username'],
+          responsebody['email'],
+          responsebody['id'],
+          responsebody['birthdat'],
+          responsebody['baby_name'],
+        );
         showdialog(context);
         String birthdat = responsebody['birthdat'];
         String babyname = responsebody['baby_name'];
+        String username = responsebody['username'];
+
+        //String username = _username2.text;
 
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  DashboardScreen(birthdat: birthdat, babyname: babyname),
+              builder: (context) => DashboardScreen(
+                  birthdat: birthdat, babyname: babyname, username: username),
             ));
       } else {
         print('login failed');
@@ -173,13 +177,15 @@ class _LOgin2State extends State<LOgin2> {
       if (message['status'] == "faild") {
         showloading(context, "wrong", " Email already exists ");
         print('erorrr');
-      }
-      if (message['status'] == "success") {
+      } else {
         String username = _username2.text;
+        String email = _email.text;
+        String pass = _pass2.text;
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CreatProfile(username: username),
+              builder: (context) =>
+                  CreatProfile(username: username, email: email, pass: pass),
             ));
       }
     }

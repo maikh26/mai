@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:transparent_image/transparent_image.dart';
 
 import 'doctor_detail.dart';
 
@@ -13,7 +12,7 @@ class doclist extends StatefulWidget {
   final detail;
   final phone_num;
   final price;
-  var image;
+  final image_gallary;
 
   doclist({
     this.name,
@@ -24,7 +23,7 @@ class doclist extends StatefulWidget {
     this.detail,
     this.phone_num,
     this.price,
-    this.image,
+    this.image_gallary,
   });
 
   @override
@@ -36,12 +35,21 @@ class _doclistState extends State<doclist> {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        height: 130,
-        width: 130,
+        height: 200,
+        width: 200,
         child: Card(
             child: Row(
           children: <Widget>[
-            Expanded(flex: 1, child: Image.asset("assets/doctor1.jpg")),
+            Expanded(
+              flex: 1,
+              child: Image.network(
+                "http://172.20.10.4/Hi_Baby/doctors/${widget.image_gallary}",
+                errorBuilder: (BuildContext context, Object exception,
+                    StackTrace stackTrace) {
+                  return Icon(Icons.do_not_disturb);
+                },
+              ),
+            ),
             Expanded(
                 flex: 2,
                 child: Container(
@@ -144,7 +152,8 @@ class _doclistState extends State<doclist> {
               ratingd: widget.rating,
               detaild: widget.detail,
               phone_numd: widget.phone_num,
-              priced: widget.price);
+              priced: widget.price,
+              imageg: widget.image_gallary);
         }));
       },
     );

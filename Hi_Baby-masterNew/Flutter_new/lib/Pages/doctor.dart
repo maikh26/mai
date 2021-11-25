@@ -65,16 +65,16 @@ class _doctorState extends State<doctor> {
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, i) {
                       return doclist(
-                          name: snapshot.data[i]['name'],
-                          work_place: snapshot.data[i]['work_place'],
-                          working_hours: snapshot.data[i]['working_time'],
-                          location: snapshot.data[i]['location'],
-                          rating: snapshot.data[i]['rating'],
-                          detail: snapshot.data[i]['detail'],
-                          phone_num: snapshot.data[i]['phone_num'],
-                          price: snapshot.data[i]['price'],
-                          image: Image.network(
-                              "http://172.20.10.4/Hi_Baby/doctors/${snapshot.data[i]['image']}"));
+                        name: snapshot.data[i]['name'],
+                        work_place: snapshot.data[i]['work_place'],
+                        working_hours: snapshot.data[i]['working_time'],
+                        location: snapshot.data[i]['location'],
+                        rating: snapshot.data[i]['rating'],
+                        detail: snapshot.data[i]['detail'],
+                        phone_num: snapshot.data[i]['phone_num'],
+                        price: snapshot.data[i]['price'],
+                        image_gallary: snapshot.data[i]['image'],
+                      );
                     },
                   );
                 }
@@ -136,6 +136,7 @@ class Datasearch extends SearchDelegate<String> {
                 detail: snapshot.data[i]['detail'],
                 phone_num: snapshot.data[i]['phone_num'],
                 price: snapshot.data[i]['price'],
+                image_gallary: snapshot.data[i]['image'],
               );
             },
           );

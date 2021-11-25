@@ -7,23 +7,42 @@ import 'package:blogapp/Pages/doctor_detail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-//import 'package:photo_view/photo_view_gallery.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
-import '../Pages/doclist .dart';
-import '../Pages/gallerydetail.dart';
+import 'doclist .dart';
+import 'gallerydetail.dart';
 
 class gallery extends StatefulWidget {
-  const gallery({Key key}) : super(key: key);
+  final String username_gallary;
+  gallery({this.username_gallary});
 
   @override
   _galleryState createState() => _galleryState();
 }
 
 class _galleryState extends State<gallery> {
+  var id = "";
+  var username = "none";
+  var email;
+
+  getpref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      id = preferences.getString("id");
+      username = preferences.getString("username");
+      email = preferences.getString("email");
+    });
+  }
+
   Future getdata() async {
     var uri = Uri.parse("http://172.20.10.4/Hi_Baby/gallery.php");
-    var response = await http.get(uri);
+    final String usernamegallary = widget.username_gallary;
+    print(usernamegallary);
+    var data = {
+      "username": usernamegallary,
+    };
+    var response = await http.post(uri, body: data);
     var responsebody = jsonDecode(response.body);
     return responsebody;
   }
@@ -34,6 +53,7 @@ class _galleryState extends State<gallery> {
   }
 
   Widget build(BuildContext context) {
+    final String usernameg = widget.username_gallary;
     return Directionality(
         textDirection: TextDirection.ltr,
         child: Scaffold(
@@ -62,8 +82,6 @@ class _galleryState extends State<gallery> {
                         footer:
                             Container(margin: EdgeInsets.all(10), height: 50),
                         child: Container(
-                          height: 200,
-                          width: 200,
                           child: Image.network(
                               "http://172.20.10.4/Hi_Baby/gallery/${snapshot.data[i]['image']}"),
                         ),
@@ -91,7 +109,7 @@ class _galleryState extends State<gallery> {
             backgroundColor: Colors.blueGrey,
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return AddBlog();
+                return AddBlog(usernameg: usernameg);
               }));
             },
             child: Text(

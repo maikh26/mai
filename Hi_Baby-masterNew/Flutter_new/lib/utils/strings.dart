@@ -25,9 +25,8 @@ class Strings {
   static const String Vaccines = "Vaccines";
   static const String videos = "Videos";
   static const String baby = "Grouth";
-  static const String gallery = "gallery";
-
   static const String article = "Articls";
+  static const String memory = "Memories";
 
   static const String loremIpsum =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor erat in arcu finibus vulputate.";

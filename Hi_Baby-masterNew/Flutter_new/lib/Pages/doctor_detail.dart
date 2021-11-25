@@ -18,6 +18,7 @@ class docdetail extends StatefulWidget {
   final phone_numd;
 
   final priced;
+  final imageg;
 
   docdetail(
       {this.named,
@@ -27,7 +28,8 @@ class docdetail extends StatefulWidget {
       this.ratingd,
       this.detaild,
       this.phone_numd,
-      this.priced});
+      this.priced,
+      this.imageg});
 
   @override
   _docdetailState createState() => _docdetailState();
@@ -93,7 +95,13 @@ class _docdetailState extends State<docdetail> {
               Container(
                   height: 300,
                   child: GridTile(
-                    child: Image.asset("assets/doctor1.jpg"),
+                    child: Image.network(
+                      "http://172.20.10.4/Hi_Baby/doctors/${widget.imageg}",
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace stackTrace) {
+                        return Icon(Icons.do_not_disturb);
+                      },
+                    ),
                     footer: Container(
                       height: 50,
                       color: Colors.blueGrey.withOpacity(0.3),

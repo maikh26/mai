@@ -21,7 +21,14 @@ import '../age.dart';
 
 class CreatProfile extends StatefulWidget {
   final String username;
-  CreatProfile({Key key, @required this.username}) : super(key: key);
+  final String email;
+  final String pass;
+  CreatProfile(
+      {Key key,
+      @required this.username,
+      @required this.email,
+      @required this.pass})
+      : super(key: key);
 
   @override
   _CreatProfileState createState() => _CreatProfileState();
@@ -49,6 +56,9 @@ class _CreatProfileState extends State<CreatProfile> {
   @override
   Widget build(BuildContext context) {
     String username = widget.username;
+    String email = widget.email;
+    String pass = widget.pass;
+
     return Scaffold(
       body: Form(
         key: _globalkey,
@@ -74,38 +84,69 @@ class _CreatProfileState extends State<CreatProfile> {
             SizedBox(
               height: 20,
             ),
-            Center(
-              child: Container(
-                width: 200,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: RaisedButton(
-                  color: Colors.blueGrey,
-                  onPressed: () {
-                    addbaby(username, _name.text, _type.text, currentDate);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            // ignore: missing_required_param
-                            builder: (context) => DashboardScreen(
-                                birthdat: DateFormat.yMd()
-                                    .format(currentDate)
-                                    .toString(),
-                                babyname: _name.text)));
-                  },
-                  child: circular
-                      ? CircularProgressIndicator()
-                      : Text(
-                          "continue",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+            age(),
+            SizedBox(
+              height: 20,
+            ),
+            InkWell(
+              onTap: () async {
+                setState(() {
+                  circular = true;
+                });
+                if (_globalkey.currentState.validate()) {
+                  var imageResponse = await networkHandler.patchImage(
+                      "/profile/add/image", _imageFile.path);
+                  if (imageResponse.statusCode == 200) {
+                    setState(() {
+                      circular = false;
+                    });
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => group()),
+                        (route) => false);
+                  }
+                } else {
+                  setState(() {
+                    circular = false;
+                  });
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => group()),
+                      (route) => false);
+                }
+              },
+              child: Center(
+                child: Container(
+                  width: 200,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: RaisedButton(
+                    color: Colors.blueGrey,
+                    onPressed: () {
+                      addbaby(username, email, pass, _name.text, _type.text,
+                          currentDate);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              // ignore: missing_required_param
+                              builder: (context) => DashboardScreen(
+                                  birthdat: DateFormat.yMd()
+                                      .format(currentDate)
+                                      .toString(),
+                                  babyname: _name.text)));
+                    },
+                    child: circular
+                        ? CircularProgressIndicator()
+                        : Text(
+                            "continue",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
+                  ),
                 ),
               ),
             ),
@@ -277,7 +318,7 @@ class _CreatProfileState extends State<CreatProfile> {
   }
   // ignore: missing_return
 
-  /* Widget age() {
+  Widget age() {
     return Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
         padding: EdgeInsets.all(15),
@@ -317,7 +358,7 @@ class _CreatProfileState extends State<CreatProfile> {
         ] //CustomDivider(),
 
             ));
-  } */
+  }
 
   Widget titleTextField() {
     return TextFormField(
@@ -347,13 +388,15 @@ class _CreatProfileState extends State<CreatProfile> {
     );
   }
 
-  Future<String> addbaby(String username, String babyname, String baby_gender,
-      DateTime birthday) async {
+  Future<String> addbaby(String username, String email, String pass,
+      String babyname, String baby_gender, DateTime birthday) async {
     var ROOT = Uri.parse("http://172.20.10.4/Hi_Baby/babyinfo.php");
 
     try {
       var map = new Map<String, dynamic>();
       map["username"] = username;
+      map["email"] = email;
+      map["pass"] = pass;
       map["babyname"] = babyname;
       map["baby_gender"] = baby_gender;
       map["birthday"] = DateFormat.yMd().format(birthday).toString();

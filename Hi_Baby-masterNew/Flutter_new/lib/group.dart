@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:like_button/like_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:blogapp/Pages/login2.dart';
 // ignore: duplicate_import
@@ -330,6 +331,9 @@ class postlist extends StatelessWidget {
       {this.name, this.contentpost, this.postid, this.postimage, this.num});
   @override
   Widget build(BuildContext context) {
+    final double size = 30;
+    bool isliked = false;
+    final likecount = 2;
     // TODO: implement build
     return Card(
         child: Column(children: <Widget>[
@@ -390,18 +394,10 @@ class postlist extends StatelessWidget {
                             SizedBox(
                               width: 4,
                             ),
-                            IconButton(
-                              icon: Icon(FontAwesomeIcons.heart),
-                              color: Colors.blueGrey,
-                              onPressed: () {},
-                            ),
-                            Text(
-                              num.toString(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                            LikeButton(
+                              size: size,
+                              isLiked: isliked,
+                              likeCount: likecount,
                             ),
                           ]),
                       padding: EdgeInsets.only(top: 5, bottom: 5),

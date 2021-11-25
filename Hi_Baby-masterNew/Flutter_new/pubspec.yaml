@@ -49,11 +49,14 @@ dependencies:
   date_picker_timeline: ^1.2.3
   flutter_staggered_animations: ^1.0.0
   flutter_local_notifications: ^4.0.1+2
-  whatsapp_unilink: ^2.0.0
-
   video_player_web: ^2.0.4
   get: 
   video_player:
+  flutter_native_timezone: ^2.0.0
+  whatsapp_unilink: ^2.0.0
+  like_button: ^2.0.3
+
+
   
   
   
