@@ -47,7 +47,7 @@ class _sitterdetailState extends State<sitterdetail> {
               Container(
                   height: 300,
                   child: GridTile(
-                    child: Image.asset("assets/babysitter.jpg"),
+                    child: Image.asset("assets/babysitter.jpg", scale: 0.5),
                     footer: Container(
                       height: 50,
                       color: Colors.blueGrey.withOpacity(0.3),

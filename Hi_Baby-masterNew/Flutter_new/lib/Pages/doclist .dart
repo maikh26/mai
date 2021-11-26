@@ -62,6 +62,7 @@ class _doclistState extends State<doclist> {
                             child: Row(
                           children: <Widget>[
                             Container(
+                              padding: EdgeInsets.only(left: 5),
                               child: Text(
                                 "Dr ",
                                 style: TextStyle(
@@ -80,7 +81,7 @@ class _doclistState extends State<doclist> {
                               child: Row(
                             children: <Widget>[
                               Container(
-                                margin: EdgeInsets.all(2),
+                                margin: EdgeInsets.all(5),
                                 child: Text(
                                   "work place : ",
                                   style: TextStyle(
@@ -103,7 +104,7 @@ class _doclistState extends State<doclist> {
                               child: Row(
                             children: <Widget>[
                               Container(
-                                margin: EdgeInsets.all(1),
+                                margin: EdgeInsets.all(5),
                                 child: Text(
                                   "location: ",
                                   style: TextStyle(

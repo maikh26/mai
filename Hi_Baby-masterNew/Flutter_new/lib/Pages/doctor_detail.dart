@@ -94,9 +94,11 @@ class _docdetailState extends State<docdetail> {
             body: ListView(children: <Widget>[
               Container(
                   height: 300,
+                  width: double.infinity,
                   child: GridTile(
                     child: Image.network(
                       "http://172.20.10.4/Hi_Baby/doctors/${widget.imageg}",
+                      scale: 0.2,
                       errorBuilder: (BuildContext context, Object exception,
                           StackTrace stackTrace) {
                         return Icon(Icons.do_not_disturb);
